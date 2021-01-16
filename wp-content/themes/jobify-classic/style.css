@@ -1,0 +1,674 @@
+/**
+ * Theme Name: Jobify - Classic
+ * Theme URI: https://astoundify.com/
+ * Author: Astoundify
+ * Author URI: http://astoundify.com
+ * Description: Everything you need to build a professional job board.
+ * Version: 1.0.0
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Tags: white, one-column, right-sidebar, fixed-width, custom-background, custom-header, theme-options, full-width-template, featured-images, flexible-header, custom-menu, translation-ready
+ * Template: jobify
+*/
+/**
+ * The parent theme's CSS is automatically included so there is no need
+ * to use the @import rule to include the parent theme CSS.
+ *
+ * Place Custom CSS Below this.
+ */
+
+
+/*@import url(//db.onlinewebfonts.com/c/4d5a4b6cb8c25363cc5c23f72b6b319f?family=AlianzaW03-Slab200);*/
+@font-face {
+font-family: RangeMono-Regular;
+src: url(/wp-content/themes//jobify/fonts/3A7D50_0_0.ttf);
+}
+
+#jobify_widget_companies-1 {
+	display: none;
+}
+#jobify_widget_feature_callout-2 {
+	display: none;
+}
+#jobify_widget_feature_callout-3 {
+	display: none;
+}
+#jobify_widget_stats-1 {
+	display: none;
+}
+#jobify_widget_testimonials-1 {
+	display: none;
+}
+#colophon .footer-widgets {
+	display: none;
+}
+.woocommerce-MyAccount-navigation-link--orders, .woocommerce-MyAccount-navigation-link--downloads, .woocommerce-MyAccount-navigation-link--edit-address {
+	display: none;
+}
+#jobify_widget_feature_callout-1 {
+	display: none;
+}
+#jobify_widget_search_hero-1 .hero-search {
+	background-image: url(/wp-content/uploads/2019/10/widget-search-background.jp) !important;
+}
+#jobify_widget_feature_callout-2 .feature-callout-cover {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9) ), url('https://jobify-demos.astoundify.com/classic/wp-content/uploads/sites/2/2016/04/hero-image-text-right-darker.jpg') !important;
+}
+#jobify_widget_feature_callout-3 .feature-callout-cover {
+	 background: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9) ), url('https://jobify-demos.astoundify.com/classic/wp-content/uploads/sites/2/2016/04/hero-image-text-left-darker.jpg') !important;
+}
+body {
+	font-family: RangeMono-Regular;
+}
+p {
+	font-family: RangeMono-Regular !important;
+}
+h1.site-title {
+	font-family: RangeMono-Regular !important;
+}
+.nav-menu--primary .sub-menu {
+	background: #e0e0e0 !important;
+	border: 2px solid #f7f7f7;
+}
+.nav-menu--primary .sub-menu li {
+	border-bottom: 1px solid #f7f7f7;
+}
+.nav-menu>ul .sub-menu, ul.nav-menu .sub-menu {
+    padding-left: 0em;
+}
+.nav-menu-break-large .nav-menu--primary .sub-menu, .nav-menu-break-large ul.nav-menu--primary .sub-menu {
+	padding: 0;
+}
+.site-branding .site-title {
+    color: #000;
+}
+.nav-menu-break-large .nav-menu--primary a, .nav-menu-break-large ul.nav-menu--primary a {
+    font-size: 20px;
+    padding: 8px;
+	color: #000;
+	word-spacing: -8px;
+}
+.nav-menu--primary ul li.login>a {
+    border-color: #000;
+    background-color: #000;
+    color: #fff;
+}
+.nav-menu--primary ul li.login>a:hover {
+	 border-color: #000 !important;
+    background-color: transparent !important;
+    color: #000 !important;
+}
+.hero-search--height-medium .hero-search__content {
+    color: #000 !important;
+}
+.hero-search__title {
+    font-weight: bold;
+	font-family: RangeMono-Regular;
+	color: #000 !important;
+	font-size: 60px;
+}
+.hero-search__content p {
+    font-size: 40px;
+    font-family: RangeMono-Regular !important;
+}
+.job_search_form--flat {
+    max-width: 80%;
+    margin: 0 auto;
+    /*border: 5px solid #f7f7f7;*/
+    border-radius: 5px;
+	text-align: left;
+}
+.label_keywords {
+	color: #000;
+}
+.label_keywords h6 {
+	margin: 0;
+	font-family: RangeMono-Regular !important;
+}
+.label_keywords span {
+	font-size: small;
+	font-family: RangeMono-Regular !important;
+}
+.search_categories {
+	display: none;
+}
+
+.search-input-wrapper{
+	position: relative;
+}
+
+.search-input-wrapper i{
+	position: absolute;
+	right: 10px;
+	top: 30%;
+}
+
+.location-input-wrapper{
+	position: relative;
+}
+
+.location-input-wrapper i{
+	position: absolute;
+	right: 10px;
+	top: 30%;
+}
+
+.wp-job-manager-categories-enabled .search_jobs div.search_location, .wp-job-manager-categories-enabled  .search_jobs div.search_keywords {
+	    width: 40%;
+}
+.hero-search .search_jobs>div input[type=submit] {
+	background-color: #000;
+	border-radius: 30px;
+	margin-top: 48px; 
+}
+/*.hero-search .search_jobs>div input[type=submit]:before {
+    content: "\f002";
+    font-size: 22px;
+    color: #797979;
+}*/
+.search_jobs>div input {
+	border: 1px solid;
+	font-family: RangeMono-Regular !important;
+    font-size: 20px;
+    color: #000;
+}
+.search_categories .select2-container {
+    border: 1px solid;
+    border-radius: 5px;
+}
+.widget-title.widget-title--home {
+    font-size: 50px;
+    color: #000;
+    font-family: RangeMono-Regular;
+    font-weight: bold;
+}
+.widget-description.widget-description--home {
+    font-size: 29px;
+    color: #000;
+    font-family: RangeMono-Regular;
+}
+.slick-list {
+	background-color: #000;
+}
+.callout-feature-content h2 {
+   font-family: RangeMono-Regular;
+    font-weight: bold;
+}
+.callout-feature-content p {
+    text-align: justify;
+    font-size: 20px;
+    font-family: RangeMono-Regular;
+}
+.button--color-white {
+	color: #000;
+}
+.job_listing-meta{
+    width: 15%;
+}
+ul.job_listings .job_listing:hover, .job_position_featured, li.type-resume:hover {
+    box-shadow: inset 5px 0 0 #000;
+}
+.search_jobs {
+	background-color: #000;
+}
+.job_listing-meta .job-type {
+    background-color: #000 !important;
+    padding: 15px;
+    border-radius: 0;
+	font-family: RangeMono-Regular;
+    letter-spacing: 2px;
+}
+.load_more_jobs strong {
+	font-size: 20px;
+	color: #000;
+  border-color: #000;
+  padding: 20px 40px;
+	font-family: RangeMono-Regular;
+    letter-spacing: 2px;
+}
+.load_more_jobs strong:hover {
+background-color: #000;
+}
+.job-spotlight__content {
+    color: #000;
+	font-family: RangeMono-Regular;
+}
+ .job-spotlight__actions .job-type {
+   background-color: #000 !important;
+   padding: 10px;
+   border-radius: 0;
+	 font-size: 10px;
+	 letter-spacing: 2px;
+	 font-family: RangeMono-Regular;
+	 
+}
+.job-spotlight__title {
+  font-weight: bold;
+	font-size: 15px;
+	font-family: RangeMono-Regular !important;
+}
+.job-spotlight__content p {
+	font-size: 17px;
+    /*text-align: justify;*/
+    font-family: RangeMono-Regular !important;
+}
+.content-grid[data-columns] {
+	color: #000;
+   font-size: 18px;
+ /*  text-align: justify;*/
+}
+.content-grid .entry-title {
+	font-size: 30px;
+    font-weight: bold;
+    text-align: left;
+    font-family: RangeMono-Regular;
+}
+.entry-summary .button {
+	background-color: #000;
+	font-family: RangeMono-Regular;
+	letter-spacing: 2px;
+}
+.entry-summary .button:hover { 
+	color: #000;
+	border-color: #000;
+	background-color:transparent;
+}
+.site-footer .footer-widgets {
+    background-color: #000;
+}
+.footer-cta {
+    background-color: #000;
+}
+.footer-cta h2 {
+    font-size: 50px;
+    font-weight: bold;
+    font-family: RangeMono-Regular;
+}
+.footer-cta p {
+	font-size: 24px;
+	font-family: RangeMono-Regular;
+}
+.widget--footer .widget-title {
+    font-weight: bold;
+    line-height: 1.3;
+    font-family: RangeMono-Regular;
+    color: #fff;
+    font-size: 24px;
+}
+.widget--footer .textwidget {
+	font-size: 20px;
+  font-family: RangeMono-Regular;
+    text-align: justify;
+}
+.widget--footer ul {
+	font-family: RangeMono-Regular;
+}
+.widget--footer ul li {
+	font-size: 20px;
+}
+.page-header .page-title {
+    font-size: 50px;
+    font-weight: bold;
+    color: #000;
+    font-family: RangeMono-Regular;
+}
+#job-manager-job-dashboard {
+	color: #000;
+    font-family: RangeMono-Regular;
+}
+#job-manager-job-dashboard p {
+	font-size: 20px;
+}
+table.job-manager-jobs {
+	    border: 2px solid #ededed;
+}
+.job-manager-jobs td {
+	padding: 1rem;
+}
+.job-manager-jobs th {
+	font-size: 24px;
+	padding: 1rem;
+}
+.job-manager-jobs td.job_title {
+	font-size: 24px;
+}
+.job-manager-jobs td.job_title a {
+	color: #000;
+}
+ ul.job-dashboard-actions {
+	font-size: 28px;
+}
+td.date {
+	font-size: 20px;
+}
+.woocommerce-MyAccount-navigation-link {
+    border: 2px solid #f7f7f7;
+	border-radius: 5px
+}
+.woocommerce-account .woocommerce-MyAccount-navigation ul li a {
+  margin: 0 .80rem;
+	font-size: 27px;
+    font-weight: bold;
+    text-align: left;
+    color: #000;
+    font-family: RangeMono-Regular;
+
+}
+.woocommerce-MyAccount-navigation ul li a:hover {
+	 color: #797979; 
+}
+.woocommerce-MyAccount-navigation-link.is-active a {
+    color: #7dc246;
+border-bottom: 2px solid #000;
+}
+.woocommerce-message, .woocommerce-info {
+    border-bottom: 2px solid #000;
+}
+.woocommerce-notices-wrapper {
+    border-color: #000;
+    color: #000;
+    font-size: 20px;
+	font-family: RangeMono-Regular;
+}
+.woocommerce-notices-wrapper .woocommerce-message a {
+    color: #000;
+    font-size: 20px;
+}
+.woocommerce-notices-wrapper .woocommerce-message a:hover {
+	 color: #797979; 
+	text-decoration: none;
+}
+.woocommerce-MyAccount-content p {
+	color: #000;
+  font-size: 20px;
+  font-family: RangeMono-Regular;
+}
+.woocommerce-MyAccount-content p a {
+	font-weight: bold;
+	font-family: RangeMono-Regular;
+}
+button.woocommerce-Button {
+	background-color: #000;
+	font-family: RangeMono-Regular;
+	letter-spacing: 2px;
+}
+button.woocommerce-Button:hover {
+	color: #000;
+  border-color: #000;
+}
+.woocommerce-Address-title h3 {
+	font-size: 40px;
+  font-weight: bold;
+  color: #000;
+  font-family: RangeMono-Regular;
+}
+.woocommerce-Address-title a {
+	font-weight: bold;
+  font-size: 20px;
+}
+.woocommerce-Address address {
+    font-style: italic;
+    margin: 0 0 24px;
+    color: #000;
+    font-size: 20px;
+    font-family: RangeMono-Regular;
+}
+a.woocommerce-Button {
+	background-color: #000;
+	font-family: RangeMono-Regular;
+	letter-spacing: 2px;
+}
+a.woocommerce-Button:hover {
+	color: #000;
+  border-color: #000;
+}
+.woocommerce form .form-row label, .woocommerce-page form .form-row label {
+    color: #000;
+}
+button.woocommerce-button {
+	background-color: #000;
+	font-family: RangeMono-Regular;
+	letter-spacing: 2px;
+}
+button.woocommerce-button:hover {
+	color: #000;
+  border-color: #000;
+}
+p.lost_password a {
+    font-size: 20px;
+}
+p.lost_password a:hover {
+    text-decoration: underline;
+}
+.woocommerce-button {
+	background-color: #000;
+	font-family: RangeMono-Regular;
+	letter-spacing: 2px;
+}
+.woocommerce-button:hover {
+	color: #000;
+  border-color: #000;
+}
+button.mfp-close {
+	background-color: #000 !important;
+}
+button.mfp-close:hover {
+background-color: transparent !important;
+  border-color: #000 !important;
+	color: #000 !important;
+}
+.woocommerce form .form-row label, .woocommerce-page form .form-row label {
+    font-family: RangeMono-Regular !important;
+    font-size: 20px;
+}
+.woocommerce form .form-row .input-text, .woocommerce-page form .form-row .input-text {
+    font-family: RangeMono-Regular !important;
+    font-size: 20px;
+    color: #000;
+}
+fieldset label {
+	font-family: RangeMono-Regular !important;
+  font-size: 20px; 
+  color: #000;
+}
+ fieldset input[type=text]
+{
+	font-family: RangeMono-Regular !important;
+  font-size: 20px; 
+  color: #000;
+}
+::placeholder { 
+   font-family: RangeMono-Regular !important;
+}
+.file-field-label .button {
+	background-color: #000;
+	font-family: RangeMono-Regular;
+	letter-spacing: 2px;
+}
+.file-field-label .button:hover {
+	color: #000;
+	border-color: #000;
+	background-color: transparent;
+}
+.job-manager-form .button {
+	background-color: #000;
+	font-family: RangeMono-Regular;
+	letter-spacing: 2px;
+}
+.job-manager-form .button:hover {
+	color: #000;
+	border-color: #000;
+	background-color: transparent;
+}
+.price-option .price-option__title {
+	    font-family: RangeMono-Regular;
+	background-color: #000 !important;
+}
+.price-option .price-option__description {
+    color: #000;
+    font-size: 20px;
+	font-family: RangeMono-Regular;
+}
+.price-option__description .button {
+	background-color: #000;
+	font-family: RangeMono-Regular;
+	letter-spacing: 2px;
+}
+.price-option__description .button:hover {
+	color: #000;
+	border-color: #000;
+	background-color: transparent;
+}
+.price-option__description ul {
+    text-align: left;
+}
+.woocomerce-FormRow .button {
+	background-color: #000;
+	font-family: RangeMono-Regular;
+	letter-spacing: 2px;
+}
+.woocomerce-FormRow .button:hover {
+	color: #000;
+	border-color: #000;
+	background-color: transparent;
+}
+.woocommerce-privacy-policy-text p {
+	color: #000;
+}
+.woocommerce-simple-registration-login-link a {
+	font-weight: bold;
+}
+.site-footer {
+    background-color: #000;
+    font-family: RangeMono-Regular !important;
+}
+/*11/18/19*/
+.job-type.term-2, .job-type.full-time {
+    background-color: #000 !important;
+}
+.job-type.freelance {
+    background-color: #000 !important;
+}
+.page-subtitle ul {
+    font-family: RangeMono-Regular;
+    font-size: 16px;
+    color: #000;
+}
+.content-area .job-overview-content {
+	color: #000;
+}
+.job-overview .widget-title {
+    font-size: 30px;
+    font-weight: 600;
+    font-family: RangeMono-Regular;
+}
+.job_listing-description img {
+	display: none;
+}
+.job_listing-description h3 {
+ 	font-size: 26px;
+    font-weight: 600;
+    font-family: RangeMono-Regular;
+ }
+.job_listing-description h4 {
+ 	font-size: 24px;
+    font-weight: 600;
+    font-family: RangeMono-Regular;
+ }
+ .job_listing-description p {
+ 	font-size: 20px;
+ }
+ .job_listing-description ul {
+ 	font-size: 20px;
+ 	font-family: RangeMono-Regular;
+ }
+ .related-jobs .widget-title {
+ 	color: #000;
+    font-size: 26px;
+    font-weight: 600;
+    font-family: RangeMono-Regular;
+}
+.job_application .application_button {
+	color: #000 !important;
+	border-color: #000 !important;
+	font-family: RangeMono-Regular;
+	letter-spacing: 2px;
+}
+.job_application .application_button:hover {	
+	background-color: #000 !important;
+	color: #fff !important;
+}
+.jobify_widget_job_apply .view-video {
+	background-color: #000 !important;
+	color: #fff !important;
+	font-family: RangeMono-Regular;
+	letter-spacing: 1px;
+}
+.jobify_widget_job_apply .view-video:hover {
+	color: #000 !important;
+	border-color: #000 !important;
+	background-color: transparent !important;
+}
+.job_listing-company-social a {
+    font-size: 20px;
+}
+.job_listing-categories .job-category {
+	font: 20px;
+}
+.job_listing-map, .resume-map {
+    display: none;
+}
+.fieldset-job_region {
+    display: none;
+}
+#tinymce {
+	font-family: RangeMono-Regular !important;	
+}
+.form-submit .submit {
+	background-color: #000 !important;
+	color: #fff !important;
+	font-family: RangeMono-Regular;
+	letter-spacing: 1px;
+}
+.form-submit .submit:hover {
+	color: #000 !important;
+	border-color: #000 !important;
+	background-color: transparent !important;
+}
+
+@media (max-width: 992px) {
+	.job_listing-meta {
+	    width: 25%;
+	}
+	.load_more_jobs strong {
+	    font-size: 16px;
+	    padding: 16px 24px;
+	}
+	.wp-job-manager-categories-enabled .search_jobs div.search_location, .wp-job-manager-categories-enabled .search_jobs div.search_keywords {
+	    width: 48%;
+	}
+	.hero-search__title {
+	    font-size: 30px;
+	}
+	.hero-search__content p {
+    	font-size: 20px;
+	}
+	.widget-title.widget-title--home {
+	    font-size: 25px;
+	}
+	.widget-description.widget-description--home {
+	    font-size: 20px;
+	}
+}
+@media (max-width: 767px) {
+	.job_listing-meta {
+	    width: 60%;
+	}
+	.load_more_jobs strong {
+	    font-size: 16px;
+	    padding: 12px 20px;
+	}
+	.wp-job-manager-categories-enabled .search_jobs div.search_location, .wp-job-manager-categories-enabled .search_jobs div.search_keywords {
+    width: 100%;
+	}
+}
