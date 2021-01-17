@@ -718,7 +718,7 @@ function job_manager_user_can_edit_job( $job_id ) {
 	} else {
 		$job = get_post( $job_id );
 
-		if ( ! $job || ( absint( $job->post_author ) !== get_current_user_id() && ! current_user_can( 'edit_post', $job_id ) ) ) {
+		if ( ! $job || 'job_listing' !== $job->post_type || ( absint( $job->post_author ) !== get_current_user_id() && ! current_user_can( 'edit_post', $job_id ) ) ) {
 			$can_edit = false;
 		}
 	}
@@ -1054,6 +1054,49 @@ function wpjm_published_submission_edits_require_moderation() {
 }
 
 /**
+ * Get the category slugs from the search query string.
+ * The query string is made with the category slugs separate by commas.
+ *
+ * @since 1.34.2
+ *
+ * @return string[] $search_category_slugs Array of category slugs.
+ */
+function wpjm_get_category_slugs_from_search_query_string() {
+	$search_category_slugs = [];
+
+	if ( isset( $_GET['search_category'] ) && $_GET['search_category'] ) {
+		$search_category_slugs = explode( ',', sanitize_text_field( wp_unslash( $_GET['search_category'] ) ) );
+	}
+
+	return $search_category_slugs;
+}
+
+/**
+ * Get categories by slug.
+ *
+ * @since 1.34.2
+ *
+ * @param string[]  $search_category_slugs Array of category slugs to search.
+ * @param array     $default_args          Default args to search the term categories.
+ * @param WP_Term[] $exclude_categories    Array of categories to exclude.
+ *
+ * @return WP_Term[] $categories Array of categories.
+ */
+function wpjm_get_categories_by_slug( $search_category_slugs, $default_args, $exclude_categories ) {
+	$exclude_category_ids = wp_list_pluck( $exclude_categories, 'term_id' );
+
+	$args = [
+		'hide_empty' => false,
+		'slug'       => $search_category_slugs,
+		'exclude'    => $exclude_category_ids,
+	];
+
+	$args = wp_parse_args( $args, $default_args );
+
+	return get_terms( $args );
+}
+
+/**
  * Displays category select dropdown.
  *
  * Based on wp_dropdown_categories, with the exception of supporting multiple selected categories.
@@ -1094,6 +1137,10 @@ function job_manager_dropdown_categories( $args = '' ) {
 		$r['pad_counts'] = true;
 	}
 
+	if ( ! isset( $r['search_category_slugs'] ) ) {
+		$r['search_category_slugs'] = wpjm_get_category_slugs_from_search_query_string();
+	}
+
 	/** This filter is documented in wp-job-manager.php */
 	$r['lang'] = apply_filters( 'wpjm_lang', null );
 
@@ -1102,18 +1149,26 @@ function job_manager_dropdown_categories( $args = '' ) {
 	$categories      = get_transient( $categories_hash );
 
 	if ( empty( $categories ) ) {
-		$categories = get_terms(
-			[
-				'taxonomy'     => $r['taxonomy'],
-				'orderby'      => $r['orderby'],
-				'order'        => $r['order'],
-				'hide_empty'   => $r['hide_empty'],
-				'parent'       => $r['parent'],
-				'child_of'     => $r['child_of'],
-				'exclude'      => $r['exclude'],
-				'hierarchical' => $r['hierarchical'],
-			]
-		);
+		$args = [
+			'taxonomy'     => $r['taxonomy'],
+			'orderby'      => $r['orderby'],
+			'order'        => $r['order'],
+			'hide_empty'   => $r['hide_empty'],
+			'parent'       => $r['parent'],
+			'child_of'     => $r['child_of'],
+			'exclude'      => $r['exclude'],
+			'hierarchical' => $r['hierarchical'],
+		];
+
+		$categories = get_terms( $args );
+
+		if ( ! empty( $r['search_category_slugs'] ) ) {
+			$categories = array_merge(
+				$categories,
+				wpjm_get_categories_by_slug( $r['search_category_slugs'], $args, $categories )
+			);
+		}
+
 		set_transient( $categories_hash, $categories, DAY_IN_SECONDS * 7 );
 	}
 
@@ -1409,7 +1464,7 @@ function job_manager_duplicate_listing( $post_id ) {
 	}
 
 	$post = get_post( $post_id );
-	if ( ! $post ) {
+	if ( ! $post || 'job_listing' !== $post->post_type ) {
 		return 0;
 	}
 
@@ -1454,14 +1509,21 @@ function job_manager_duplicate_listing( $post_id ) {
 	if ( ! empty( $post_meta ) ) {
 		$post_meta = wp_list_pluck( $post_meta, 'meta_value', 'meta_key' );
 
-		$default_duplicate_ignore_keys = [ '_filled', '_featured', '_job_expires', '_job_duration', '_package_id', '_user_package_id' ];
+		$default_duplicate_ignore_keys = [ '_filled', '_featured', '_job_expires', '_job_duration', '_package_id', '_user_package_id', '_edit_lock', '_submitting_key', '_tracked_submitted', '_tracked_approved' ];
 		$duplicate_ignore_keys         = apply_filters( 'job_manager_duplicate_listing_ignore_keys', $default_duplicate_ignore_keys, true );
 
 		foreach ( $post_meta as $meta_key => $meta_value ) {
-			if ( in_array( $meta_key, $duplicate_ignore_keys, true ) ) {
+			$sanitized_key = preg_replace( "/[^\x20-\x7E]/", '', $meta_key );
+
+			if ( in_array( $sanitized_key, $duplicate_ignore_keys, true ) ) {
 				continue;
 			}
-			update_post_meta( $new_post_id, $meta_key, maybe_unserialize( $meta_value ) );
+
+			if ( 1 === preg_match( '/^(_wp_|_oembed_)/', $sanitized_key ) ) {
+				continue;
+			}
+
+			update_post_meta( $new_post_id, wp_slash( $meta_key ), wp_slash( maybe_unserialize( $meta_value ) ) );
 		}
 	}
 
