@@ -77,7 +77,7 @@ jQuery( function( $ ) {
 
 	/* State/Country select boxes */
 	var states_json       = wc_country_select_params.countries.replace( /&quot;/g, '"' ),
-		states            = $.parseJSON( states_json ),
+		states            = JSON.parse( states_json ),
 		wrapper_selectors = '.woocommerce-billing-fields,' +
 			'.woocommerce-shipping-fields,' +
 			'.woocommerce-address-fields,' +
@@ -93,7 +93,7 @@ jQuery( function( $ ) {
 
 		var country     = $( this ).val(),
 			$statebox     = $wrapper.find( '#billing_state, #shipping_state, #calc_shipping_state' ),
-			$parent       = $statebox.closest( 'p.form-row' ),
+			$parent       = $statebox.closest( '.form-row' ),
 			input_name    = $statebox.attr( 'name' ),
 			input_id      = $statebox.attr('id'),
 			input_classes = $statebox.attr('data-input-classes'),
