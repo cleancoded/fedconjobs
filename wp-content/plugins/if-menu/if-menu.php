@@ -3,7 +3,7 @@
 Plugin Name: If Menu - Visibility control for menu items
 Plugin URI: https://layered.market/plugins/if-menu
 Description: Display tailored menu items to each visitor with visibility rules
-Version: 0.15
+Version: 0.16.1
 Text Domain: if-menu
 Author: Layered
 Author URI: https://layered.market
@@ -18,14 +18,19 @@ require plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 class If_Menu {
 
 	public static function init() {
-		global $pagenow;
+		global $pagenow, $wp_version;
 
 		add_action('rest_api_init', 'If_Menu::restApi');
 
 		if (is_admin()) {
 			add_action('admin_enqueue_scripts', 'If_Menu::admin_init');
 			add_action('wp_update_nav_menu_item', 'If_Menu::wp_update_nav_menu_item', 10, 2);
-			add_filter('wp_edit_nav_menu_walker', 'If_Menu::customWalker', 500, 2);
+
+			// Add missing `wp_nav_menu_item_custom_fields` filter in Walker_Nav_Menu_Edit
+			if (version_compare($wp_version, '5.4', '<')) {
+				add_filter('wp_edit_nav_menu_walker', 'If_Menu::customWalker', 500, 2);
+			}
+
 			add_action('wp_nav_menu_item_custom_fields', 'If_Menu::menu_item_fields');
 			add_action('wp_nav_menu_item_custom_title', 'If_Menu::menu_item_title');
 			add_action('admin_footer', 'If_Menu::adminFooter');
@@ -130,7 +135,7 @@ class If_Menu {
 
 		if ($pagenow == 'nav-menus.php') {
 			wp_enqueue_script('select2', plugins_url('assets/select2.min.js', __FILE__), array('jquery'), '4.0.5');
-			wp_enqueue_script('if-menu', plugins_url('assets/if-menu.js', __FILE__), array('select2', 'jquery-ui-dialog'), '0.9');
+			wp_enqueue_script('if-menu', plugins_url('assets/if-menu.js', __FILE__), array('select2', 'jquery-ui-dialog'), '0.16');
 
 			wp_enqueue_style('select2', plugins_url('assets/select2.min.css', __FILE__), array(), '4.0.5');
 			wp_enqueue_style('if-menu', plugins_url('assets/if-menu.css', __FILE__), array('wp-jquery-ui-dialog'), '0.15');
@@ -140,10 +145,17 @@ class If_Menu {
 				'conflictErrorMessage'  =>  sprintf(
 					wp_kses(
 						__('<strong>If Menu</strong> detected a conflict with another plugin or theme (%s) and may not work as expected. <a href="%s" target="_blank">Read more about the issue here</a>', 'if-menu'),
-						array('a' => array('href' => array()), 'strong' => array())
+						array('a' => array('href' => [], 'target' => []), 'strong' => [])
 					),
 					apply_filters('wp_edit_nav_menu_walker', 'Walker_Nav_Menu_Edit', 0),
-					esc_url('https://wordpress.org/plugins/if-menu/faq/')
+					esc_url('https://wordpress.org/plugins/if-menu/#if%20menu%20is%20broken%2C%20no%20visibility%20rules%20are%20available')
+				),
+				'duplicateErrorMessage'  =>  sprintf(
+					wp_kses(
+						__('<strong>If Menu</strong> detected that another plugin or theme (%s) extends menu items incorrectly. This may cause duplicate visibility rules to show up, but functionality should be fine.', 'if-menu'),
+						['strong' => []]
+					),
+					apply_filters('wp_edit_nav_menu_walker', 'Walker_Nav_Menu_Edit', 0)
 				)
 			));
 		}
@@ -228,7 +240,7 @@ class If_Menu {
 					<?php if (isset($selectedCondition['options'])) : ?>
 						<select class="menu-item-if-menu-options" name="menu-item-if-menu-options[<?php echo esc_attr($item_id) ?>][<?php echo esc_attr($index) ?>][]" style="width: 305px" multiple>
 							<?php foreach ($selectedCondition['options'] as $value => $label) : ?>
-								<option value="<?php echo esc_attr($value) ?>" <?php if (in_array($value, $ifMenuOptions[$index])) echo 'selected' ?>><?php echo $label ?></option>
+								<option value="<?php echo esc_attr($value) ?>" <?php if (is_array($ifMenuOptions[$index]) && in_array($value, $ifMenuOptions[$index])) echo 'selected' ?>><?php echo $label ?></option>
 							<?php endforeach ?>
 						</select>
 					<?php endif ?>
