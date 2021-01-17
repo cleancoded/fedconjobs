@@ -36,8 +36,7 @@ if (!class_exists('MGWPAction')) :
 		}
 
 		public static function uninstall() {
-			##CLEARLPCONFIG##
-			##CLEARFWCONFIG##
+			##CLEARPTCONFIG##
 			##CLEARIPSTORE##
 		 	##CLEARDYNSYNCCONFIG##
 		}

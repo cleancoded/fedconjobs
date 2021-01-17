@@ -4,8 +4,9 @@ Tags: migrate, migrate WordPress, WordPress migration, migration, clone, transfe
 Plugin URI: https://www.migrateguru.com/
 Donate link: https://www.migrateguru.com/
 Requires at least: 4.0
-Tested up to: 5.3
-Stable tag: 3.4
+Tested up to: 5.6
+Requires PHP: 5.4.0
+Stable tag: 4.35
 License: GPLv2 or later
 License URI: [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
 
@@ -69,11 +70,11 @@ Currently we don't support:
 3. Choose the destination web host that you want to clone your website to, enter details.
 4. Click ‘Migrate’.
 
-= PROUD MIGRATION PARTNERS of WP Engine and Pantheon =
+= PROUD MIGRATION PARTNERS of WP Engine, Pantheon and DreamHost =
 
 = SUPPORTS ALL 5,000+ WEB HOSTS AROUND THE WORLD =
 
-WPEngine, Pantheon, FlyWheel, LiquidWeb, Cloudways, Savvii, DigitalOcean, Hostgator, Godaddy, Bluehost, SiteGround, Kinsta, AWS, Pressable, Webhostingtalk, Inmotion Hosting, Softlayer, Reverbnation, Homestead, Site5, Linode, Fatcow, Dreamhost, Liquid Web, Rackspace, etc.
+WPEngine, Pantheon, FlyWheel, LiquidWeb, Cloudways, Savvii, DigitalOcean, Hostgator, Godaddy, Bluehost, SiteGround, Kinsta, AWS, Pressable, Webhostingtalk, Inmotion Hosting, Softlayer, Reverbnation, Homestead, Site5, Linode, Fatcow, DreamHost, Liquid Web, Rackspace, etc.
 
 == Installation ==
 
@@ -131,6 +132,15 @@ Yes, we do. You can access it here: https://migrateguru.freshdesk.com/support/ho
 6. Click ‘Migrate’.
 
 == Changelog =
+= 4.35 =
+* scanlist and filelist functions improved
+
+= 4.31 =
+* Fetching Mysql Version
+* Robust data fetch APIs
+* Core plugin changes
+* Sanitizing incoming params
+
 = 3.4 =
 * Plugin branding fixes
 

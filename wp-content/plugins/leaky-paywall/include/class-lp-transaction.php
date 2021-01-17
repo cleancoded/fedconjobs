@@ -15,6 +15,8 @@ class LP_Transaction {
 
 	private $payment_gateway;
 
+	private $payment_gateway_txn_id;
+
 	private $payment_status;
 
 	private $coupon_code;
@@ -26,6 +28,7 @@ class LP_Transaction {
 		$this->user_id = $args['user_id'];
 		$this->price = $args['price'];
 		$this->payment_gateway = $args['payment_gateway'];
+		$this->payment_gateway_txn_id = isset( $args['payment_gateway_txn_id'] ) ? $args['payment_gateway_txn_id'] : '';
 		$this->payment_status = $args['payment_status'];
 		$this->level_id = $args['level_id'];
 		$this->currency = isset( $args['currency'] ) ? $args['currency'] : '';
@@ -46,7 +49,6 @@ class LP_Transaction {
 			'post_type'		=> 'lp_transaction'
 		);
 		
-		// Insert the post into the database
 		$transaction_id = wp_insert_post( $transaction );
 
 		update_post_meta( $transaction_id, '_email', $user->user_email );
@@ -55,10 +57,14 @@ class LP_Transaction {
 		update_post_meta( $transaction_id, '_login', $user->user_login );
 		update_post_meta( $transaction_id, '_level_id', $this->level_id );
 		update_post_meta( $transaction_id, '_gateway', $this->payment_gateway );
+		update_post_meta( $transaction_id, '_gateway_txn_id', $this->payment_gateway_txn_id );
 		update_post_meta( $transaction_id, '_price', $this->price );
 		update_post_meta( $transaction_id, '_currency', $this->currency );
 		update_post_meta( $transaction_id, '_status', $this->payment_status );
 		update_post_meta( $transaction_id, '_is_recurring', $this->is_recurring );
+		update_post_meta( $transaction_id, '_transaction_status', 'complete' );
+
+		do_action( 'leaky_paywall_after_create_transaction', $transaction_id, $user );
 
 		return $transaction_id;
 		
