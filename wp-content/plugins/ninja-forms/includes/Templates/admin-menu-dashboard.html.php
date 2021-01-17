@@ -7,7 +7,7 @@
 <script id="tmpl-nf-dashboard" type="text/template">
     <header class="topbar">
         <div class="app-title">
-            <strong><?php _e( 'Ninja Forms Dashboard', 'ninja-forms' ); ?></strong>
+            <strong><?php esc_html_e( 'Ninja Forms Dashboard', 'ninja-forms' ); ?></strong>
         </div>
     </header>
     <div class="notices"></div>
@@ -95,7 +95,7 @@
               <# if( data.setupButtonText ){ #>
                 {{{ data.setupButtonText }}}
               <# } else { #>
-                <?php echo __( 'Setup', 'ninja-forms' ); ?>
+                <?php esc_html_e( 'Setup', 'ninja-forms' ); ?>
               <# } #>
             </a>
           <# } else { #>
@@ -114,10 +114,11 @@
 <script id="tmpl-nf-apps" type="text/template">
 
     <div class="widget widget-plan-notice">
-        <p class="widget-title">What else comes with Ninja Forms?</p>
-        <a class="nf-button primary feature-list-link" href="https://ninjaforms.com/features/?utm_source=Ninja+Forms+Plugin&utm_medium=Apps+and+Integrations&utm_campaign=Dashboard+Features+Link" target="_blank" rel="noopener">We're glad you asked! Checkout our full list of features! <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
-        <div><em>All plans include a 14 day money back guarantee.</em></div>
-        <div>Requires a current active license and subject to our <a href="https://ninjaforms.com/terms-conditions/?utm_medium=plugin&utm_source=plugin-dashboard&utm_campaign=Ninja+Forms+Memberships&utm_content=Terms+Conditions" target="_blank" rel="noopener">Terms &amp; Conditions</a>.</div>
+        <p class="widget-title">Having a tough time choosing just a few?<br />Bundle and save big with a membership!</p>
+        <p>
+        Our membership plans have been designed to bring commonly needed features into one affordable package. Whether you're building forms for yourself, your clients, or your company, there's a plan that will fit your needs... and your budget.
+        </p>
+        <a class="nf-button primary feature-list-link" href="https://ninjaforms.com/pricing/?utm_source=Ninja+Forms+Plugin&utm_medium=Apps+and+Integrations&utm_campaign=Dashboard+Features+Link" target="_blank" rel="noopener">View Memberships&nbsp;<i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
     </div>
 
     <?php Ninja_Forms()->menus[ 'add-ons']->display(); ?>
@@ -126,19 +127,19 @@
 <!-- Section: Required Updates -->
 <script id="tmpl-nf-requiredUpdates" type="text/template">
     <div>
-        <h1><?php _e( 'Required Updates', 'ninja-forms' ); ?></h1>
+        <h1><?php esc_html_e( 'Required Updates', 'ninja-forms' ); ?></h1>
         <div>
             <p>
-                <?php _e( "Ninja Forms needs to run some updates on your installation before you can continue. You'll be able to create and edit forms after the updates listed below have completed.", 'ninja-forms' ); ?>
+                <?php esc_html_e( "Ninja Forms needs to run some updates on your installation before you can continue. You'll be able to create and edit forms after the updates listed below have completed.", 'ninja-forms' ); ?>
             </p>
             <p>
-                <?php _e( "Normally, users will still be able to view and submit forms while these updates take place. If an update needs to modify database information, we'll put the affected form in maintenance mode until we get done with that update.", 'ninja-forms' ); ?>
+                <?php esc_html_e( "Normally, users will still be able to view and submit forms while these updates take place. If an update needs to modify database information, we'll put the affected form in maintenance mode until we get done with that update.", 'ninja-forms' ); ?>
             </p>
             <p>
-                <?php _e( "It's always a good idea to have an up to date backup of your WordPress site on hand. That's especially true when you run plugin and theme updates. Luckily, there are plenty of good backup plugins available.", 'ninja-forms' ); ?>
+                <?php esc_html_e( "It's always a good idea to have an up to date backup of your WordPress site on hand. That's especially true when you run plugin and theme updates. Luckily, there are plenty of good backup plugins available.", 'ninja-forms' ); ?>
             </p>
             <p>
-                <?php _e( "When you're ready, just click the \"Do Required Updates\" button below to get started. You'll be able to create and edit forms in no time.", 'ninja-forms' ); ?>
+                <?php esc_html_e( "When you're ready, just click the \"Do Required Updates\" button below to get started. You'll be able to create and edit forms in no time.", 'ninja-forms' ); ?>
             </p>
         </div>
         <div id="nfUpgradeApp">
@@ -150,7 +151,7 @@
             </table>
         </div>
         <div>
-            <input class="nf-required-update nf-update-button" type='button' id='nf-required-updates-btn' name='nf-required-updates-btn' value="<?php _e( 'Do Required Updates' ); ?>" />
+            <input class="nf-required-update nf-update-button" type='button' id='nf-required-updates-btn' name='nf-required-updates-btn' value="<?php esc_html_e( 'Do Required Updates' ); ?>" />
         </div>
         <div class="nf-update-progress jBox-content" id="nf-required-updates-progress"></div>
     </div>
@@ -160,8 +161,8 @@
 <script id="tmpl-nf-widget-forms" type="text/template">
     <header>
         <div class="action">
-            <button class="add nf-button primary"><?php _e( 'Add New', 'ninja-forms' ); ?></button>
-            <button class="cancel nf-button secondary"><?php _e( 'Cancel', 'ninja-forms' ); ?></button>
+            <button class="add nf-button primary"><?php esc_html_e( 'Add New', 'ninja-forms' ); ?></button>
+            <button class="cancel nf-button secondary"><?php esc_html_e( 'Cancel', 'ninja-forms' ); ?></button>
         </div>
         <div class="filter nf-search"></div>
     </header>
@@ -170,25 +171,25 @@
 
 <!-- Widget: Forms - Filter -->
 <script id="tmpl-nf-widget-forms-filter" type="text/template">
-    <input class="nf-filter" type="search" placeholder="<?php _e( 'Search Forms', 'ninja-forms' ); ?>">
+    <input class="nf-filter" type="search" placeholder="<?php esc_html_e( 'Search Forms', 'ninja-forms' ); ?>">
 </script>
 
 <!-- Widget: Forms - Table -->
 <script id="tmpl-nf-widget-forms-table" type="text/template">
     <thead>
-        <th class="sortable th-title" data-sort="title"><?php _e( 'Title', 'ninja-forms' ); ?></th>
-        <th class="sortable th-shortcode" data-sort="shortcode"><?php _e( 'Shortcode', 'ninja-forms' ); ?></th>
-        <th class="sortable th-created" data-sort="created_at"><?php _e( 'Date Created', 'ninja-forms' ); ?></th>
+        <th class="sortable th-title" data-sort="title"><?php esc_html_e( 'Title', 'ninja-forms' ); ?></th>
+        <th class="sortable th-shortcode" data-sort="shortcode"><?php esc_html_e( 'Shortcode', 'ninja-forms' ); ?></th>
+        <th class="sortable th-created" data-sort="created_at"><?php esc_html_e( 'Date Created', 'ninja-forms' ); ?></th>
         <th></th>
     </thead>
     <tbody class="content">
-        <?php _e( 'Loading Forms...', 'ninja-forms' ); ?>
+        <?php esc_html_e( 'Loading Forms...', 'ninja-forms' ); ?>
     </tbody>
     <tfoot>
         <tr>
             <td colspan="4" class="action2">
-                <button class="more"><?php _e( 'More', 'ninja-forms' ); ?></button>
-                <button class="less"><?php _e( 'Less', 'ninja-forms' ); ?></button>
+                <button class="more"><?php esc_html_e( 'More', 'ninja-forms' ); ?></button>
+                <button class="less"><?php esc_html_e( 'Less', 'ninja-forms' ); ?></button>
             </td>
         </tr>
     </tfoot>
@@ -199,9 +200,9 @@
             <a href="admin.php?page=ninja-forms&form_id={{{ data.id }}}">{{{ data.title }}}</a>
         </span>
         <ul class="form-row-actions">
-            <li><a href="admin.php?page=ninja-forms&form_id={{{ data.id }}}"><?php _e( 'Edit', 'ninja-forms' ); ?></a></li>
-            <li><a class="duplicate"><?php _e( 'Duplicate', 'ninja-forms' ); ?></a></li>
-            <li><a href="<?php print( get_home_url() ); ?>/?nf_preview_form={{{ data.id }}}" target="_blank"><?php _e( 'Preview Form', 'ninja-forms' ); ?></a></li>
+            <li><a href="admin.php?page=ninja-forms&form_id={{{ data.id }}}"><?php esc_html_e( 'Edit', 'ninja-forms' ); ?></a></li>
+            <li><a class="duplicate"><?php esc_html_e( 'Duplicate', 'ninja-forms' ); ?></a></li>
+            <li><a href="<?php print( get_home_url() ); ?>/?nf_preview_form={{{ data.id }}}" target="_blank"><?php esc_html_e( 'Preview Form', 'ninja-forms' ); ?></a></li>
             <# if(data.public_link_key) { #>
             <li><a href="<?php
                 global $wp_rewrite;
@@ -210,10 +211,10 @@
                 } else {
                     echo site_url('?nf_public_link={{{ data.public_link_key }}}');
                 }
-                ?>"><?php _e( 'Public Link', 'ninja-forms' ); ?></a></li>
+                ?>"><?php esc_html_e( 'Public Link', 'ninja-forms' ); ?></a></li>
             <# } #>
-            <li><a href="edit.php?post_status=all&post_type=nf_sub&form_id={{{ data.id }}}" target="_blank"><?php _e( 'View Submissions', 'ninja-forms' ); ?></a></li>
-            <li><a class="delete"><?php _e( 'Delete', 'ninja-forms' ); ?></a></li>
+            <li><a href="edit.php?post_status=all&post_type=nf_sub&form_id={{{ data.id }}}" target="_blank"><?php esc_html_e( 'View Submissions', 'ninja-forms' ); ?></a></li>
+            <li><a class="delete"><?php esc_html_e( 'Delete', 'ninja-forms' ); ?></a></li>
         </ul>
     </td>
     <td>
@@ -227,10 +228,24 @@
 </div></div></td>
 </script>
 <script id="tmpl-nf-widget-forms-table-empty" type="text/template">
-    <td colspan="4"><?php _e( 'No Forms', 'ninja-forms' ); ?></td>
+    <td colspan="4"><?php esc_html_e( 'No Forms', 'ninja-forms' ); ?></td>
 </script>
 <script id="tmpl-nf-widget-forms-table-loading" type="text/template">
-    <td colspan="4"><?php _e( 'Loading Forms', 'ninja-forms' ); ?></td>
+    <td colspan="4"><?php esc_html_e( 'Loading Forms', 'ninja-forms' ); ?></td>
+</script>
+
+<!-- Widget: Forms - New Forms Template grid -->
+<script id="tmpl-nf-widget-templates-grid" type="text/template">
+<header class="section-head screen-reader-text">
+<?php esc_html_e( 'Available Templates', 'ninja-forms' ); ?>
+</header>
+<div class="installed"></div>
+<?php if( ! apply_filters( 'ninja_forms_disable_marketing', false ) ) { ?>
+  <header class="section-head">
+  <?php esc_html_e( 'Additional Templates', 'ninja-forms' ); ?>
+  </header>
+  <div class="available"></div>
+<?php } ?>
 </script>
 
 <!-- Widget: Forms - New Forms Templates -->

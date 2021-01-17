@@ -112,7 +112,7 @@ final class NF_Database_Models_Submission
         $this->_field_values[ $field ] = get_post_meta($this->_id, $field, TRUE);
         $this->_field_values[ $field_ref ] = get_post_meta($this->_id, $field, TRUE);
 
-        return $this->_field_values[ $field ];
+        return WPN_Helper::htmlspecialchars( $this->_field_values[ $field ] );
     }
 
     /**
@@ -296,7 +296,7 @@ final class NF_Database_Models_Submission
 
         $field_labels = array(
             '_seq_num' => '#',
-            '_date_submitted' => __( 'Date Submitted', 'ninja-forms' )
+            '_date_submitted' => esc_html__( 'Date Submitted', 'ninja-forms' )
         );
 
         // Legacy Filter from 2.9.*

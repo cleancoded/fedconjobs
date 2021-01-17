@@ -124,6 +124,23 @@ jQuery(document).ready(function($) {
 		).then (function( response ) {
 			formIndex = formIndex + 1;
 			response = JSON.parse( response );
+
+			if(response.data.hasOwnProperty('errors')) {
+				var errors = response.data.errors;
+				var errorMsg = '';
+
+				if (Array.isArray(errors)) {
+					errors.forEach(function(error) {
+						errors += error + "\n";
+					})
+				} else {
+					errors = errors;
+				}
+				console.log('Delete All Data Errors: ', errors);
+				alert(errors);
+				return null;
+			}
+
 			// we expect success and then move to the next form
 			if( response.data.success ) {
 				if( formIndex < nfAdmin.forms.length ) {
@@ -198,13 +215,13 @@ jQuery(document).ready(function($) {
 				class: 'nfDowngradeButtonPrimary',
                 callback: function( e ) {
                 	// If our "Downgrade" button does not have have an attribute of disabled...
-                    if( 'disabled' !== $('.nfDowngradeButtonPrimary').attr( 'disabled' ) ){
+                    if( 'disabled' !== $('.nfDowngradeButtonPrimary').prop( 'disabled' ) ){
                     	// ...get the url...
                     	var url = window.location.href;
                     	// ...split the url based on the question mark from the query string...
                     	url = url.split( '?' );
                     	// build the downgrade url and redirect the user.
-                    	url[0] = url[0] + '?page=ninja-forms&nf-switcher=rollback';
+                    	url[0] = url[0] + '?page=ninja-forms&nf-switcher=rollback&security=' + nfAdmin.nonce;
                     	window.location.replace( url[0] );
 					}
                 }
@@ -223,7 +240,7 @@ jQuery(document).ready(function($) {
         // Style and add the disabled tag by default.
         $('.nfDowngradeButtonPrimary').css( 'background', '#ccc' );
         $('.nfDowngradeButtonPrimary').css( 'border', '#ccc 1px solid' );
-        $('.nfDowngradeButtonPrimary').attr( 'disabled', true );
+        $('.nfDowngradeButtonPrimary').prop( 'disabled', 'disabled' );
 
         // Listen to our input and...
         $('#downgradeConfirmInput').on( 'keyup', function(){
@@ -232,7 +249,7 @@ jQuery(document).ready(function($) {
                 // ...apply our blue styling to button and remove disabled attribute.
         		$('.nfDowngradeButtonPrimary').css( 'background', '#1EA9EA' );
                 $('.nfDowngradeButtonPrimary').css( 'border', '#1EA9EA 1px solid' );
-                $('.nfDowngradeButtonPrimary').removeAttr( 'disabled' );
+                $('.nfDowngradeButtonPrimary').prop( 'disabled','' );
             }
 
             // ...if DOWNGRADE is not typed then...
@@ -240,7 +257,7 @@ jQuery(document).ready(function($) {
                 // ...set styling back to default and reapply the disabled prop.
         		$('.nfDowngradeButtonPrimary').css( 'background', '#ccc' );
                 $('.nfDowngradeButtonPrimary').css( 'border', '#ccc 1px solid' );
-                $('.nfDowngradeButtonPrimary').prop( 'disabled', true );
+                $('.nfDowngradeButtonPrimary').prop( 'disabled', 'disabled' );
 			}
 		})
     });
