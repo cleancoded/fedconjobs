@@ -3,7 +3,7 @@
 Plugin Name: If Menu - Visibility control for menu items
 Plugin URI: https://layered.market/plugins/if-menu
 Description: Display tailored menu items to each visitor with visibility rules
-Version: 0.16.1
+Version: 0.16.2
 Text Domain: if-menu
 Author: Layered
 Author URI: https://layered.market
@@ -352,7 +352,8 @@ class If_Menu {
 				$action = isset($_REQUEST['action']) ? sanitize_key($_REQUEST['action']) : false;
 				$nonce = isset($_REQUEST['nonce']) ? sanitize_key($_REQUEST['nonce']) : false;
 				return array('valid' => $action && $nonce && $nonce === get_transient('if-menu-nonce-' . $action));
-			}
+			},
+			'permission_callback' => '__return_true',
 		));
 	}
 
